@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Detector App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Color Detector</h1>
+        <div class="button-group">
+            <button id="startBtn">Start Webcam</button>
+            <button id="stopBtn">Stop Webcam</button>
+        </div>
+        <div class="video-box" id="video-box" style="display: none;">
+            <img id="video-stream">
+        </div>
+    </div>
+
+    <script>
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const videoBox = document.getElementById('video-box');
+        const videoStream = document.getElementById('video-stream');
+
+        startBtn.onclick = () => {
+            videoStream.src = "{{ url_for('video_feed') }}";
+            videoBox.style.display = "inline-block";
+        };
+
+        stopBtn.onclick = () => {
+            videoStream.src = "";
+            videoBox.style.display = "none";
+        };
+    </script>
+</body>
+</html>
